@@ -1,19 +1,17 @@
 package Coordinates;
 
-import javax.lang.model.util.ElementScanner14;
-
 public class Coordinates {
 
-    private int longitude;
-    private int latitude;
-    private int height;
-    private boolean creation_error;
+    private final int longitude;
+    private final int latitude;
+    private final int height;
+    private final boolean creation_error;
 
     public Coordinates(int lon, int lat, int h) {
         this.longitude = (lon < 0) ? 0 : lon;
         this.latitude = (lat < 0) ? 0 : lat;
         this.height = (h > 100) ? 100 : (h < 0) ? 0 : h;
-        this.creation_error = (h < 0) ? true : false;
+        this.creation_error = (h < 0);
     }
 
     public int getLongitude() {
@@ -32,18 +30,4 @@ public class Coordinates {
         return this.creation_error;
     }
 
-    /*
-    // Setters
-    public void setLongitude(int longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setLatitude(int latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-     */
 }

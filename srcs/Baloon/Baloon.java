@@ -3,7 +3,6 @@ package Baloon;
 import Aircraft.Aircraft;
 import Coordinates.Coordinates;
 import Macros.Macros;
-import WeatherProvider.WeatherProvider;
 
 public class Baloon extends Aircraft {
 
@@ -13,11 +12,7 @@ public class Baloon extends Aircraft {
 
     @Override
     public void updateConditions() {
-        WeatherProvider weather = WeatherProvider.getInstance();
-        //
-        //System.out.println("Coordinates [Longitude: " + this.coordinates.getLongitude() + ", Latitude: " + this.coordinates.getLatitude() + ", Height: " + this.coordinates.getHeight() + "]");
-        String aux = weather.getCurrentWeather(this.coordinates);
-        //System.out.println("Actualizamos el tiempo en el globo - " + aux);
+        String aux = this.weathertower.getWeather(this.coordinates);
         Coordinates c_aux = null;
 
         switch (aux) {

@@ -18,5 +18,4 @@ public abstract class Flyable {
 
     public abstract boolean getErrorCoordinates();
 
-    public abstract void mostrarInformacion();
 }

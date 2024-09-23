@@ -16,30 +16,19 @@ public class Tower {
     public void unregister(Flyable p_flyable) {
         this.observers.remove(p_flyable);
         System.out.println("Tower says: " + p_flyable.getDescripcion() + " unregistered from the weather tower");
+        if (this.observers.isEmpty()) {
+            System.out.println("Tower says: Tower control here we dont see anymore aircrafts on the area.");
+        }
     }
 
     protected void conditionChanged() {
-        //System.out.println("Actualizamos los objetos de la lista (" + this.observers.size() + ")");
-        if (observers.isEmpty()) {
-            System.out.println("Tower says: Tower control here we dont see any aircrafts on the area.");
-            return;
-        }
 
         for (int i = 0; i < observers.size(); i++) {
-            //System.out.println(observers.get(i).getDescripcion());
             observers.get(i).updateConditions();
             if (observers.get(i).getErrorCoordinates()) {
                 System.out.println(observers.get(i).getDescripcion() + " landing.");
                 observers.remove(i);
             }
-        }
-    }
-
-    public void show_Aircrafts() {
-        System.out.println("Actualizamos los objetos de la lista (" + this.observers.size() + ")");
-        for (int i = 0; i < observers.size(); i++) {
-            System.out.println("- - - - - - - - - - -");
-            observers.get(i).mostrarInformacion();
         }
     }
 }

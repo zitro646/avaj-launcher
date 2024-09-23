@@ -15,17 +15,9 @@ public abstract class Aircraft extends Flyable {
         this.coordinates = p_coor;
     }
 
+    @Override
     public boolean getErrorCoordinates() {
         return this.coordinates.getCreation_error();
-    }
-
-    //Eliminar esto despues de quitar debug
-    public void mostrarInformacion() {
-        System.out.println("Nombre: " + name);
-        System.out.println("id: " + id);
-        System.out.println("Longitud: " + coordinates.getLongitude());
-        System.out.println("Latitud: " + coordinates.getLatitude());
-        System.out.println("Altura: " + coordinates.getHeight());
     }
 
 }

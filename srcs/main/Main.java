@@ -13,8 +13,6 @@ import java.io.IOException;
 
 public class Main {
 
-    //public static AircraftFactory factory = new AircraftFactory();
-    //public static WeatherProvider tiempo = new WeatherProvider(100, 100, 100);
     public static WeatherTower la_torre = new WeatherTower();
     public static int n_rep = -1;
 
@@ -26,24 +24,24 @@ public class Main {
             return;
         }
 
-        processFile(args[0]);
-        //la_torre.show_Aircrafts();
-        System.out.println("Vuelta " + n_rep);
+        if (!processFile(args[0])) {
+            System.out.println("Error: Data invalid");
+            return;
+        }
         for (int i = 0; i < n_rep; i++) {
-            //System.out.println("Vuelta " + i);
             la_torre.changeWeather();
         }
-
-        System.out.println("Se finí ");
 
     }
 
     //Esto lee el archivo
-    private static void processFile(String inputFileName) {
+    private static boolean processFile(String inputFileName) {
         BufferedReader reader = null;
         BufferedWriter writer = null;
         String line;
+        Flyable aux = null;
         int i = 0;
+        boolean procesed = true;
         try {
             reader = new BufferedReader(new FileReader(inputFileName));
             writer = new BufferedWriter(new FileWriter(Macros.outputFileName)
@@ -57,12 +55,18 @@ public class Main {
                         System.out.println("Error: El numero de vueltas no se consiguio parsear a int");
                     }
                 } else {
-                    la_torre.register(processLine(line));
+                    aux = processLine(line);
+                    if (!aux.getErrorCoordinates()) {
+                        la_torre.register(aux);
+                    } else {
+                        return false;
+                    }
                 }
                 i++;
             }
         } catch (IOException e) {
             System.out.println("Error processing the file: " + e.getMessage());
+            procesed = false;
         } finally {
             try {
                 if (reader != null) {
@@ -77,6 +81,7 @@ public class Main {
                 System.out.println("Error closing resources: " + e.getMessage());
             }
         }
+        return procesed;
     }
 
     // Esto ta reducido de narices , pero convierte una linea a un objeto

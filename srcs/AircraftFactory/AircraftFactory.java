@@ -1,11 +1,10 @@
 package AircraftFactory;
 
-import Aircraft.Aircraft;
-import Coordinates.Coordinates;
 import Baloon.Baloon;
+import Coordinates.Coordinates;
+import Flyable.Flyable;
 import Helicopter.Helicopter;
 import JetPlane.JetPlane;
-import Flyable.Flyable;
 
 public class AircraftFactory {
 
@@ -16,18 +15,18 @@ public class AircraftFactory {
         Flyable aux = null;
         switch (p_type) {
             case "baloon":
-                aux = new Baloon(p_name, this.id_row, p_Coordinates);
+                aux = new Baloon(p_name, AircraftFactory.id_row, p_Coordinates);
                 break;
             case "helicopter":
-                aux = new Helicopter(p_name, this.id_row, p_Coordinates);
+                aux = new Helicopter(p_name, AircraftFactory.id_row, p_Coordinates);
                 break;
             case "jetplane":
-                aux = new JetPlane(p_name, this.id_row, p_Coordinates);
+                aux = new JetPlane(p_name, AircraftFactory.id_row, p_Coordinates);
                 break;
             default:
                 throw new AssertionError();
         }
-        this.id_row++;
+        AircraftFactory.id_row++;
         return aux;
     }
 
