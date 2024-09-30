@@ -6,10 +6,9 @@ import Flyable.Flyable;
 import Macros.Macros;
 import WeatherTower.WeatherTower;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import Writer.Writer;
 
 public class Main {
 
@@ -18,41 +17,46 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Macros.writer = new Writer(Macros.outputFileName);
+        // Macros.writer.write("JUAN ARREGLA TODO");
+        // Macros.writer.write("CON MIRAR MI CODIGO");
+        // Macros.writer.write("EH VERDA");
+        // Macros.writer.write("Archivo para leer");
         // Comprobante de fuck ups
         if (args.length != 1) {
-            System.out.println("Usage: java main.Main <input-file>");
+            Macros.writer.write("Usage: java main.Main <input-file>");
             return;
         }
 
         if (!processFile(args[0])) {
-            System.out.println("Error: Data invalid");
+            Macros.writer.write("Error: Data invalid");
             return;
         }
         for (int i = 0; i < n_rep; i++) {
             la_torre.changeWeather();
         }
+        Macros.writer.close();
 
     }
 
     //Esto lee el archivo
     private static boolean processFile(String inputFileName) {
         BufferedReader reader = null;
-        BufferedWriter writer = null;
+        
         String line;
         Flyable aux = null;
         int i = 0;
         boolean procesed = true;
         try {
             reader = new BufferedReader(new FileReader(inputFileName));
-            writer = new BufferedWriter(new FileWriter(Macros.outputFileName)
-            );
+            
 
             while ((line = reader.readLine()) != null) {
                 if (i == 0) {
                     try {
                         n_rep = Integer.parseInt(line);
                     } catch (NumberFormatException e) {
-                        System.out.println("Error: El numero de vueltas no se consiguio parsear a int");
+                        Macros.writer.write("Error: El numero de vueltas no se consiguio parsear a int");
                     }
                 } else {
                     aux = processLine(line);
@@ -65,7 +69,7 @@ public class Main {
                 i++;
             }
         } catch (IOException e) {
-            System.out.println("Error processing the file: " + e.getMessage());
+            Macros.writer.write("Error processing the file: " + e.getMessage());
             procesed = false;
         } finally {
             try {
@@ -73,12 +77,10 @@ public class Main {
                     reader.close();
                 }
 
-                if (writer != null) {
-                    writer.close();
-                }
+                
 
             } catch (IOException e) {
-                System.out.println("Error closing resources: " + e.getMessage());
+                Macros.writer.write("Error closing resources: " + e.getMessage());
             }
         }
         return procesed;

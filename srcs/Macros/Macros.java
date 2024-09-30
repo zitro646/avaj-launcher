@@ -1,4 +1,5 @@
 package Macros;
+import Writer.Writer;
 
 public class Macros {
 
@@ -8,5 +9,8 @@ public class Macros {
     public static final String FOG = "FOG";
     public static final String RAIN = "RAIN";
     public static final String SUN = "SUN";
+
+    public static Writer writer = null;
+
 
 }

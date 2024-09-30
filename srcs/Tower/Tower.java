@@ -3,6 +3,7 @@ package Tower;
 import Flyable.Flyable;
 import java.util.ArrayList;
 import java.util.List;
+import Macros.Macros;
 
 public class Tower {
 
@@ -10,14 +11,14 @@ public class Tower {
 
     public void register(Flyable p_flyable) {
         this.observers.add(p_flyable);
-        System.out.println("Tower says: " + p_flyable.getDescripcion() + " registered to weather tower");
+        Macros.writer.write("Tower says: " + p_flyable.getDescripcion() + " registered to weather tower");
     }
 
     public void unregister(Flyable p_flyable) {
         this.observers.remove(p_flyable);
-        System.out.println("Tower says: " + p_flyable.getDescripcion() + " unregistered from the weather tower");
+        Macros.writer.write("Tower says: " + p_flyable.getDescripcion() + " unregistered from the weather tower");
         if (this.observers.isEmpty()) {
-            System.out.println("Tower says: Tower control here we dont see anymore aircrafts on the area.");
+            Macros.writer.write("Tower says: Tower control here we dont see anymore aircrafts on the area.");
         }
     }
 
@@ -26,7 +27,7 @@ public class Tower {
         for (int i = 0; i < observers.size(); i++) {
             observers.get(i).updateConditions();
             if (observers.get(i).getErrorCoordinates()) {
-                System.out.println(observers.get(i).getDescripcion() + " landing.");
+                Macros.writer.write(observers.get(i).getDescripcion() + " landing.");
                 observers.remove(i);
             }
         }

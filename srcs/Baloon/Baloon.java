@@ -18,19 +18,19 @@ public class Baloon extends Aircraft {
         switch (aux) {
             case Macros.SNOW:
                 c_aux = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 15);
-                System.out.println(this.getDescripcion() + " : It's snowing. We're gonna crash.");
+                Macros.writer.write(this.getDescripcion() + " : It's snowing. We're gonna crash.");
                 break;
             case Macros.FOG:
                 c_aux = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() - 3);
-                System.out.println(this.getDescripcion() + " : Lowering my altitude , this fog is too dense.");
+                Macros.writer.write(this.getDescripcion() + " : Lowering my altitude , this fog is too dense.");
                 break;
             case Macros.RAIN:
                 c_aux = new Coordinates(coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight() + 5);
-                System.out.println(this.getDescripcion() + " : Damn you rain! You messed up my baloon.");
+                Macros.writer.write(this.getDescripcion() + " : Damn you rain! You messed up my baloon.");
                 break;
             case Macros.SUN:
                 c_aux = new Coordinates(coordinates.getLongitude() + 2, coordinates.getLatitude(), coordinates.getHeight() + 4);
-                System.out.println(this.getDescripcion() + " : Let's enjoy the good weather and take some pics.");
+                Macros.writer.write(this.getDescripcion() + " : Let's enjoy the good weather and take some pics.");
                 break;
         }
         this.coordinates = c_aux;
