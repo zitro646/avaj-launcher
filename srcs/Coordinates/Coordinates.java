@@ -11,7 +11,7 @@ public class Coordinates {
         this.longitude = (lon < 0) ? 0 : lon;
         this.latitude = (lat < 0) ? 0 : lat;
         this.height = (h > 100) ? 100 : (h < 0) ? 0 : h;
-        this.creation_error = (h < 0);
+        this.creation_error = (lon < 0 || lat < 0 || h < 0);
     }
 
     public int getLongitude() {

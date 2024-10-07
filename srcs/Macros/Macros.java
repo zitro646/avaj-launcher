@@ -11,6 +11,7 @@ public class Macros {
     public static final String SUN = "SUN";
 
     public static Writer writer = null;
+    
 
 
 }
